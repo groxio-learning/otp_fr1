@@ -4,7 +4,7 @@ defmodule Dracula.Service do
 
   # Client APIs
   def start(string) do
-    spawn(fn -> 
+    spawn(fn ->
       counter = Counter.new(string)
       run(counter)
     end)
@@ -19,7 +19,6 @@ defmodule Dracula.Service do
     receive do
       message -> message
     end
-    
   end
 
   # Server APIs
