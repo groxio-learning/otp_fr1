@@ -1,7 +1,10 @@
-defmodule Puzzler.Game do
+defmodule Puzzler.Game.Board do
+
+  defstruct [:answer, :guesses]
+  @number_of_guesses 10
 
   def new(answer) do
-    %{
+    %__MODULE__{
       answer: answer,
       guesses: [],
     }
@@ -11,7 +14,7 @@ defmodule Puzzler.Game do
     %{board | guesses: [guess | board.guesses]}
   end
 
-  defp lost?(board) when length(board.guesses) > 7 do
+  defp lost?(board) when length(board.guesses) >= @number_of_guesses do
     true
   end
   defp lost?(_), do: false
