@@ -1,12 +1,12 @@
 defmodule Puzzler.Game.Board do
-
+  alias Puzzler.Game.Score
   defstruct [:answer, :guesses]
   @number_of_guesses 10
 
   def new(answer) do
     %__MODULE__{
       answer: answer,
-      guesses: [],
+      guesses: []
     }
   end
 
@@ -17,6 +17,7 @@ defmodule Puzzler.Game.Board do
   defp lost?(board) when length(board.guesses) >= @number_of_guesses do
     true
   end
+
   defp lost?(_), do: false
 
   defp won?(%{guesses: [head | _rest], answer: head}), do: true
@@ -26,7 +27,6 @@ defmodule Puzzler.Game.Board do
   # defp playing?(board) do
   #   !lost?(board) && !won?(board)
   # end
-
 
   @doc """
   1 2 3 4 | rrw
@@ -55,24 +55,17 @@ defmodule Puzzler.Game.Board do
   end
 
   # public for testing
-  def render_row(_answer, guess) do
+  def render_row(answer, guess) do
     # score function
     score =
-      "rrw"
-      # Score.new(answer, guess)
-      # |> Score.render
-    formatted_guess =
-      Enum.join(guess, " ")
+      Score.new(answer, guess)
+      |> Score.render()
+
+    formatted_guess = Enum.join(guess, " ")
 
     "#{formatted_guess} | #{score}"
   end
-
 end
-
-
-
-
-
 
 # defmodule Puzzler.Server do
 

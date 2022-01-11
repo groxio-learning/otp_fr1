@@ -1,4 +1,4 @@
-defmodule Puzzler.Score do
+defmodule Puzzler.Game.Score do
   defstruct [:reds, :whites]
 
   def new(correct_solution, guess) do
