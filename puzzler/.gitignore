@@ -22,11 +22,6 @@ erl_crash.dump
 # Ignore package tarball (built via "mix hex.build").
 puzzler-*.tar
 
-<<<<<<< HEAD
 
 # Temporary files for e.g. tests
 /tmp
-=======
-# Temporary files, for example, from tests.
-/tmp/
->>>>>>> 6c00a20 (Add score module to calculate reds and whites)

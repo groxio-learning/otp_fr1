@@ -5,11 +5,7 @@ defmodule Puzzler.MixProject do
     [
       app: :puzzler,
       version: "0.1.0",
-<<<<<<< HEAD
       elixir: "~> 1.11",
-=======
-      elixir: "~> 1.13",
->>>>>>> 6c00a20 (Add score module to calculate reds and whites)
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
