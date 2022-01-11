@@ -11,7 +11,14 @@ defmodule Puzzler.Score do
   end
 
   def render(score) do
-    "rrw"
+    score
+    |> Enum.map(fn {color, color_count} ->
+      case color do
+        :reds -> String.duplicate("r", color_count)
+        :whites -> String.duplicate("w", color_count)
+      end
+    end)
+    |> Enum.join()
   end
 
   def count_reds(correct_solution, guess) do
