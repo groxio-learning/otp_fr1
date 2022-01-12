@@ -10,10 +10,11 @@ defmodule Puzzler.Application do
     children = [
       # Starts a worker by calling: Puzzler.Worker.start_link(arg)
       # {Puzzler.Worker, arg}
-      {Puzzler.Server, :batman},
-      {Puzzler.Server, :flash},
-      {Puzzler.Server, :spiderman},
-      {Puzzler.Server, :superman}
+      # {Puzzler.Server, :batman},
+      # {Puzzler.Server, :flash},
+      # {Puzzler.Server, :spiderman},
+      # {Puzzler.Server, :superman}
+      {DynamicSupervisor, strategy: :one_for_one, name: :sup}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -1,18 +1,11 @@
 defmodule Puzzler do
-  @moduledoc """
-  Documentation for `Puzzler`.
-  """
+  alias Puzzler.Server
 
-  @doc """
-  Hello world.
+  def add(name) do
+    DynamicSupervisor.start_child(:sup, {Server, name})
+  end
 
-  ## Examples
-
-      iex> Puzzler.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def guess(name, guess) do
+    Server.guess(name, guess)
   end
 end

@@ -21,8 +21,8 @@ defmodule Puzzler.Server do
     GenServer.start_link(__MODULE__, name, name: name)
   end
 
-  def guess(server \\ __MODULE__, guess) do
-    GenServer.call(server, {:guess, guess}) |> IO.puts()
+  def guess(server_name \\ __MODULE__, guess) do
+    GenServer.call(server_name, {:guess, guess}) |> IO.puts()
   end
 
   def child_spec(name) do
