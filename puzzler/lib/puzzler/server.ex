@@ -3,8 +3,9 @@ defmodule Puzzler.Server do
   use GenServer
 
   @impl true
-  def init(answer) do
-    answer = answer || (1..8 |> Enum.shuffle() |> Enum.take(4))
+  def init(name) do
+    IO.puts "starting #{name}"
+    answer = (1..8 |> Enum.shuffle() |> Enum.take(4))
     {:ok, Board.new(answer)}
   end
 
@@ -16,11 +17,15 @@ defmodule Puzzler.Server do
 
   ## client APIs
 
-  def start_link(answer) do
-    GenServer.start_link(__MODULE__, answer, name: __MODULE__)
+  def start_link(name) do
+    GenServer.start_link(__MODULE__, name, name: name)
   end
 
   def guess(server \\ __MODULE__, guess) do
     GenServer.call(server, {:guess, guess}) |> IO.puts()
+  end
+
+  def child_spec(name) do
+    %{id: name, start: {Puzzler.Server, :start_link, [name]}}
   end
 end
